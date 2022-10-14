@@ -15,5 +15,6 @@ Rock, paper, scissors is a classic game played by two or more people and relies 
     - Ipykernel
 <br/><br/>
 - If users wish to install all dependencies for this project, use *pip install requirements.txt*.
+- Requires prior installation of pip in the same environment.
 
 ## Milestone 3
