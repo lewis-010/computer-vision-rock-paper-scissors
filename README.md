@@ -9,3 +9,11 @@ Rock, paper, scissors is a classic game played by two or more people and relies 
 <br/><br/>
 
 ## Milestone 2
+- Install necessary libraries:
+    - OpenCV-python
+    - Tensorflow
+    - Ipykernel
+<br/><br/>
+- If users wish to install all dependencies for this project, use *pip install requirements.txt*.
+
+## Milestone 3
