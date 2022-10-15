@@ -9,7 +9,13 @@ def get_computer_choice():
 
 # gets user's choice of rock, paper or scissors
 def get_user_choice():
-    user_choice = input('Enter your choice: ')
+    while True:
+        choices = ['rock', 'paper', 'scissors']
+        user_choice = input('Enter your choice: ').lower()
+        if user_choice in choices:
+            break
+        else:
+            print("That is not a valid input. Please choose from rock, paper or scissors.")
     return user_choice
 
 # determines winner based on value of computer_choice and user_choice
