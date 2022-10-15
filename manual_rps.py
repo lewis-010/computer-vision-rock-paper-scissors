@@ -3,7 +3,7 @@ import random
 def get_computer_choice():
     options = ['rock', 'paper', 'scissors']
     computer_choice = random.choice(options)
-    # print(computer_choice)
+    print(computer_choice)
     return computer_choice
 
 
@@ -21,5 +21,9 @@ def get_winner(computer_choice, user_choice):
     else:
         print("Draw!")
 
-get_winner(computer_choice=get_computer_choice, user_choice=get_user_choice)
+def play():
+    get_computer_choice()
+    get_user_choice()
+    get_winner(computer_choice=get_computer_choice, user_choice=get_user_choice)
 
+play()
