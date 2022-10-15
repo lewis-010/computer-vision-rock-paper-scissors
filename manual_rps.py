@@ -29,13 +29,15 @@ def get_winner(computer_choice, user_choice):
 
 # calls all three previous functions to play the game
 def play():
-    get_winner(computer_choice=get_computer_choice(), user_choice=get_user_choice())
+    computer_choice = get_computer_choice()
+    user_choice = get_user_choice()
+    get_winner(computer_choice, user_choice)
     while True:
         play_again = input("Would you like to play again? (y/n): ")
         if play_again.lower() == "y":
             play()
         else:
             print("Game over.")
-        break               
+        break             
     
 play()
