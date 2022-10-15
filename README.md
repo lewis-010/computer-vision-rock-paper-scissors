@@ -16,5 +16,8 @@ Rock, paper, scissors is a classic game played by two or more people and relies 
 <br/><br/>
 - If users wish to install all dependencies for this project, use *pip install requirements.txt*.
 - Requires prior installation of pip in the same environment.
+<br/><br/>
 
 ## Milestone 3
+- *manual_rps.py* file created to play the game without the need for a computer vision system model or camera. 
+- Users can simply input their choice and the script will run to decide if they have won, lost or drawn. 
