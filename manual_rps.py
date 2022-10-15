@@ -27,7 +27,7 @@ def get_winner(computer_choice, user_choice):
     else:
         print("Draw!")
 
-# calls all three previous functions to play the game
+# calls all three previous functions to play the game and give option to play the game again
 def play():
     computer_choice = get_computer_choice()
     user_choice = get_user_choice()
