@@ -36,6 +36,6 @@ def play():
             play()
         else:
             print("Game over.")
-            break               
+        break               
     
 play()
