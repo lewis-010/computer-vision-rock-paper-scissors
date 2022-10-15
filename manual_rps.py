@@ -38,5 +38,4 @@ def play():
             print("Game over.")
             break               
     
-
 play()
