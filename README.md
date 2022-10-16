@@ -20,7 +20,7 @@ Rock, paper, scissors is a classic game played by two or more people and relies 
 
 ## Milestone 3
 - *manual_rps.py* file created to play the game without the need for a computer vision system model or camera. 
-- Users can simply run the script, input their choice of rock, paper or scissors into the terminal and find out if they wo, lost or drew.
+- Users can simply run the script, input their choice of rock, paper or scissors into the terminal and find out if they have won, lost or drawn.
 - The option to play again without re-running the the script is also provided after the result of the game has been outputted.
 ```python
 import random
