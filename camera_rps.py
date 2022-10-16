@@ -34,7 +34,6 @@ def get_user_choice():
     cap.release()
     # Destroy all the windows
     cv2.destroyAllWindows()
-    return user_choice
 
 def get_prediction(computer_choice, user_choice):
     if (computer_choice=="rock" and user_choice=="scissors") or (computer_choice=="paper" and user_choice=="rock") or (computer_choice=="scissors" and user_choice=="paper"):
