@@ -28,6 +28,7 @@ def get_user_choice():
         print(prediction)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+    return user_choice.lower()
             
     # After the loop release the cap object
     cap.release()
