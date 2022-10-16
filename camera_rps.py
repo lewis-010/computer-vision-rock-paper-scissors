@@ -13,13 +13,13 @@ class RPS:
         self.user_wins = 0
         self.options = ['rock', 'paoer', 'scissors', 'nothing']
    
-    def get_computer_choice():
-        options = ['rock', 'paper', 'scissors']
-        computer_choice = random.choice(options)
+    def get_computer_choice(self):
+        computer_options = ['rock', 'paper', 'scissors']
+        computer_choice = random.choice(computer_options)
         # print(computer_choice)
         return computer_choice
 
-    def get_user_choice():
+    def get_user_choice(self):
         while True: 
             ret, frame = cap.read()
             resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
@@ -33,14 +33,16 @@ class RPS:
             print(prediction)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-        return user_choice.lower()
+        return self.options[user_choice].lower()
                 
         # After the loop release the cap object
         cap.release()
         # Destroy all the windows
         cv2.destroyAllWindows()
 
-    def get_prediction(computer_choice, user_choice):
+    def get_prediction(self):
+        computer_choice = self.get_computer_choice()
+        user_choice = self.get_user_choice()
         if (computer_choice=="rock" and user_choice=="scissors") or (computer_choice=="paper" and user_choice=="rock") or (computer_choice=="scissors" and user_choice=="paper"):
             print("Computer wins!")
         elif (computer_choice=="rock" and user_choice=="paper") or (computer_choice=="paper" and user_choice=="scissors") or (computer_choice=="scissors" and user_choice=="rock"):
@@ -48,9 +50,7 @@ class RPS:
         else:
             print("Draw!")
 
-    def play():
-        computer_choice = get_computer_choice()
-        user_choice = get_user_choice()
+    def play(self):
         get_winner(computer_choice, user_choice)
         while True:
             play_again = input("Would you like to play again? (y/n): ")
