@@ -10,7 +10,8 @@ def get_computer_choice():
 def get_user_choice():
     '''Returns user's choice of rock, paper or scissors based on user input.
         
-        Validiity of user input is also checked.'''
+        Validiity of user input is also checked.
+    '''
     while True:
         choices = ['rock', 'paper', 'scissors']
         user_choice = input('Enter your choice: ').lower()
@@ -37,7 +38,8 @@ def get_winner(computer_choice, user_choice):
 def play():
     '''Calls the three previous functinons to run the game.
     
-        Option to play the game again provided, based on user input.'''
+        Option to play the game again provided, based on user input.
+    '''
     computer_choice = get_computer_choice()
     user_choice = get_user_choice()
     get_winner(computer_choice, user_choice)
