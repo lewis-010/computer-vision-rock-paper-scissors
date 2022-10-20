@@ -83,9 +83,9 @@ def play_game():
             print("Unlucky! The computer has won 3 games.")
             break
 
-# After the loop release the cap object
-cap.release()
-# Destroy all the windows
-cv2.destroyAllWindows()
+    # After the loop release the cap object
+    cap.release()
+    # Destroy all the windows
+    cv2.destroyAllWindows()
 
 play_game()
