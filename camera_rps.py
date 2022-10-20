@@ -2,12 +2,13 @@ import random
 import cv2
 from keras.models import load_model
 import numpy as np
+import time
 
 model = load_model('keras_model.h5')
 cap = cv2.VideoCapture(0)
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
-class RPS:
+class Rps:
     def __init__(self):
         self.computer_wins = 0
         self.user_wins = 0
@@ -28,6 +29,9 @@ class RPS:
             data[0] = normalized_image
             prediction = model.predict(data)
             user_choice = np.argmax(prediction)
+
+            # add user guess to camera feed
+            cv2.putText(frame,f"User Choice {self.choices[user_guess]} ",(50, 50),font,1,(0, 255, 255),2,cv2.LINE_4)
             cv2.imshow('frame', frame)
             # Press q to close the window
             print(prediction)
