@@ -1,4 +1,5 @@
 import random
+from tkinter import font
 import cv2
 from keras.models import load_model
 import numpy as np
@@ -30,21 +31,15 @@ class Rps:
             prediction = model.predict(data)
             user_choice = np.argmax(prediction)
 
-            # add user guess to camera feed
-            cv2.putText(frame,f"User Choice {self.choices[user_guess]} ",(50, 50),font,1,(0, 255, 255),2,cv2.LINE_4)
+            # add user guess as text to camera feed in
+            cv2.putText(frame,f"User Choice {self.choices[user_choice]} ",(50, 50),font,1,(0, 255, 255),2,cv2.LINE_4)
             cv2.imshow('frame', frame)
             # Press q to close the window
-            print(prediction)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         return self.options[user_choice].lower()
-                
-        # After the loop release the cap object
-        cap.release()
-        # Destroy all the windows
-        cv2.destroyAllWindows()
 
-    def get_prediction(self):
+    def get_winner(self):
         computer_choice = self.get_computer_choice()
         user_choice = self.get_user_choice()
         if (computer_choice=="rock" and user_choice=="scissors") or (computer_choice=="paper" and user_choice=="rock") or (computer_choice=="scissors" and user_choice=="paper"):
@@ -52,14 +47,9 @@ class Rps:
         elif (computer_choice=="rock" and user_choice=="paper") or (computer_choice=="paper" and user_choice=="scissors") or (computer_choice=="scissors" and user_choice=="rock"):
             print("You win!")
         else:
-            print("Draw!")
+            print("Draw!")           
 
-    def play(self):
-        get_winner(computer_choice, user_choice)
-        while True:
-            play_again = input("Would you like to play again? (y/n): ")
-            if play_again.lower() == "y":
-                play()
-            else:
-                print("Game over.")
-            break             
+# After the loop release the cap object
+cap.release()
+# Destroy all the windows
+cv2.destroyAllWindows()
