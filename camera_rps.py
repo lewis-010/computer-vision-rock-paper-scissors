@@ -10,6 +10,16 @@ data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 class Rps:
     def __init__(self):
+        '''
+        Attributes:
+        ----------
+        computer_wins: 
+            The number of wins the computer has.
+        user_wins:
+            The number of wins the user has.
+        options: list
+            The options from which the computer vision model assigns to the user based on their visual gesture. 
+        '''
         self.computer_wins = 0
         self.user_wins = 0
         self.options = ['rock', 'paper', 'scissors', 'nothing']
