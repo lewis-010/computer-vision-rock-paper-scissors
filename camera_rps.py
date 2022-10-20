@@ -12,7 +12,7 @@ class Rps:
     def __init__(self):
         self.computer_wins = 0
         self.user_wins = 0
-        self.options = ['rock', 'paoer', 'scissors', 'nothing']
+        self.options = ['rock', 'paper', 'scissors', 'nothing']
    
     def get_computer_choice(self):
         computer_options = ['rock', 'paper', 'scissors']
