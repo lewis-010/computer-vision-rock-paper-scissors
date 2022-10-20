@@ -45,6 +45,7 @@ class Rps:
         user_choice = self.get_user_choice()
         print("Computer choice:", computer_choice)
         print("User choice:", user_choice)
+
         if (computer_choice=="rock" and user_choice=="scissors") or (computer_choice=="paper" and user_choice=="rock") or (computer_choice=="scissors" and user_choice=="paper"):
             print("Computer wins!")
             self.computer_wins+=1
@@ -53,6 +54,19 @@ class Rps:
             self.user_wins+=1
         else:
             print("Draw!")           
+
+    def countdown(self):
+            print("The game will start soon, make your choice now!")
+            time.sleep(3)
+            print("ROCK")
+            time.sleep(1)
+            print("PAPER")
+            time.sleep(1)
+            print("SCISSORS")
+            time.sleep(1)
+            print("SHOOT")
+            time.sleep(1)
+
 
 # After the loop release the cap object
 cap.release()
