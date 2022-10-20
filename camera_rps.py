@@ -67,6 +67,22 @@ class Rps:
             print("SHOOT")
             time.sleep(1)
 
+def play_game():
+    print("Let's play rock, paper, scissors. First to three wins!")
+    time.sleep(2)
+    play = Rps()
+    while play.user_wins < 3 or play.computer_wins < 3:
+        play.countdown()
+        play.get_winner()
+        print(f"Computer wins: {play.computer_wins}")
+        print(f"User wins: {play.user_wins}")
+
+        if play.user_wins == 3:
+            print("Nice! You have won 3 games.")
+            break
+        elif play.computer_wins == 3:
+            print("Unlucky! The computer has won 3 games.")
+            break
 
 # After the loop release the cap object
 cap.release()
