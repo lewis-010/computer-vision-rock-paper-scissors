@@ -46,8 +46,10 @@ class Rps:
         print("User choice:", user_choice)
         if (computer_choice=="rock" and user_choice=="scissors") or (computer_choice=="paper" and user_choice=="rock") or (computer_choice=="scissors" and user_choice=="paper"):
             print("Computer wins!")
+            self.computer_wins+=1
         elif (computer_choice=="rock" and user_choice=="paper") or (computer_choice=="paper" and user_choice=="scissors") or (computer_choice=="scissors" and user_choice=="rock"):
             print("You win!")
+            self.user_wins+=1
         else:
             print("Draw!")           
 
