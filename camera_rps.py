@@ -1,3 +1,4 @@
+from calendar import c
 import random
 from tkinter import font
 import cv2
@@ -32,7 +33,7 @@ class Rps:
             user_choice = np.argmax(prediction)
 
             # add user guess as text to camera feed in
-            cv2.putText(frame,f"User Choice {self.choices[user_choice]} ",(50, 50),font,1,(0, 255, 255),2,cv2.LINE_4)
+            cv2.putText(frame, f"User Choice {self.options[user_choice]} ", (50, 50), font, 1, (0, 255, 255), 2, cv2.LINE_4)
             cv2.imshow('frame', frame)
             # Press q to close the window
             if cv2.waitKey(1) & 0xFF == ord('q'):
