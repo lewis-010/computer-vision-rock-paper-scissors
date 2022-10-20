@@ -21,7 +21,8 @@ class Rps:
         return computer_choice
 
     def get_user_choice(self):
-        while True: 
+        t_end = time.time()+1
+        while t_end > time.time(): 
             ret, frame = cap.read()
             font = cv2.FONT_HERSHEY_SIMPLEX
             resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
