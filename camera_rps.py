@@ -42,6 +42,8 @@ class Rps:
     def get_winner(self):
         computer_choice = self.get_computer_choice()
         user_choice = self.get_user_choice()
+        print("Computer choice:", computer_choice)
+        print("User choice:", user_choice)
         if (computer_choice=="rock" and user_choice=="scissors") or (computer_choice=="paper" and user_choice=="rock") or (computer_choice=="scissors" and user_choice=="paper"):
             print("Computer wins!")
         elif (computer_choice=="rock" and user_choice=="paper") or (computer_choice=="paper" and user_choice=="scissors") or (computer_choice=="scissors" and user_choice=="rock"):
