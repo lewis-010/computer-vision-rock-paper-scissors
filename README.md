@@ -99,16 +99,16 @@ class Rps:
 
     # provide user with time to make a decision in the form of a classic rock, paper, scissors countdown
     def countdown(self):
-            print("The game will start soon, make your choice now!")
-            time.sleep(3)
-            print("ROCK")
-            time.sleep(1)
-            print("PAPER")
-            time.sleep(1)
-            print("SCISSORS")
-            time.sleep(1)
-            print("SHOOT")
-            time.sleep(1)
+        print("The game will start soon, make your choice now!")
+        time.sleep(3)
+        print("ROCK")
+        time.sleep(1)
+        print("PAPER")
+        time.sleep(1)
+        print("SCISSORS")
+        time.sleep(1)
+        print("SHOOT")
+        time.sleep(1)
 
 # create instance of class Rps (play) inside play_game function and set limit of wins to 3 before code ends
 def play_game():
