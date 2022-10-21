@@ -49,7 +49,7 @@ class Rps:
             font = cv2.FONT_HERSHEY_SIMPLEX
             resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
             image_np = np.array(resized_frame)
-            normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # normalize the image
+            normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
             data[0] = normalized_image
             prediction = model.predict(data)
             user_choice = np.argmax(prediction)
