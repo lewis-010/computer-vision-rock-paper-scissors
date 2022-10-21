@@ -27,7 +27,6 @@ class Rps:
     def get_computer_choice(self):
         computer_options = ['rock', 'paper', 'scissors']
         computer_choice = random.choice(computer_options)
-        # print(computer_choice)
         return computer_choice
 
     def get_user_choice(self):
