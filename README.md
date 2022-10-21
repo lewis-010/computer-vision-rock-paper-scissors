@@ -32,6 +32,7 @@ Rock, paper, scissors is a classic game played by two or more people and relies 
     - score tracking code added to get_winner function (limit of 3 wins for user or computer before script ends)
     - countdown function added in the same format of a classic rock, paper, scissors game (ROCK, PAPER, SCISSORS, SHOOT, *get_user_choice runs*)
     - text added to camera display that describes the user's choice
+<br/><br/>
 - note - doc strings added in *camera_rps.py* file.
 ```Python
 import cv2
@@ -40,22 +41,25 @@ from keras.models import load_model
 import numpy as np
 import time
 
+# load computer vision model
 model = load_model('keras_model.h5')
 cap = cv2.VideoCapture(0)
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 class Rps:
+    # initialize class and set user/computer win attrbutes to 0
     def __init__(self):
         self.computer_wins = 0
         self.user_wins = 0
         self.options = ['rock', 'paper', 'scissors', 'nothing']
-   
+
+    # select random computer choice from list of options
     def get_computer_choice(self):
         computer_options = ['rock', 'paper', 'scissors']
         computer_choice = random.choice(computer_options)
-        # print(computer_choice)
         return computer_choice
 
+    # select user choice using webcam/computer vision model (model runtime limited to 1 second)
     def get_user_choice(self):
         t_end = time.time()+1
         while t_end > time.time(): 
@@ -63,12 +67,13 @@ class Rps:
             font = cv2.FONT_HERSHEY_SIMPLEX
             resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
             image_np = np.array(resized_frame)
-            normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
+            # normalize the image
+            normalized_image = (image_np.astype(np.float32) / 127.0) - 1 
             data[0] = normalized_image
             prediction = model.predict(data)
             user_choice = np.argmax(prediction)
 
-            # add user guess as text to camera feed in
+            # add user choice as text to camera feed on the screen
             cv2.putText(frame, f"User Choice {self.options[user_choice]} ", (50, 50), font, 1, (0, 255, 255), 2, cv2.LINE_4)
             cv2.imshow('frame', frame)
             # Press q to close the window
@@ -76,6 +81,7 @@ class Rps:
                 break
         return self.options[user_choice].lower()
 
+    # determine winner based on if statements and add 1 win to the relevant attribute (user_wins or computer_wins)
     def get_winner(self):
         computer_choice = self.get_computer_choice()
         user_choice = self.get_user_choice()
@@ -91,6 +97,7 @@ class Rps:
         else:
             print("Draw!")           
 
+    # provide user with time to make a decision in the form of a classic rock, paper, scissors countdown
     def countdown(self):
             print("The game will start soon, make your choice now!")
             time.sleep(3)
@@ -103,6 +110,7 @@ class Rps:
             print("SHOOT")
             time.sleep(1)
 
+# create instance of class Rps (play) inside play_game function and set limit of wins to 3 before code ends
 def play_game():
     print("Let's play rock, paper, scissors. First to three wins!")
     time.sleep(2)
@@ -120,9 +128,9 @@ def play_game():
             print("Unlucky! The computer has won 3 games.")
             break
 
-    # After the loop release the cap object
+    # after the loop release the cap object
     cap.release()
-    # Destroy all the windows
+    # destroy all the windows
     cv2.destroyAllWindows()
 
 play_game()
