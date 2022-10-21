@@ -25,6 +25,12 @@ class Rps:
         self.options = ['rock', 'paper', 'scissors', 'nothing']
    
     def get_computer_choice(self):
+        '''
+        Randomly selects the computer's choice for each game from computer_options list.
+
+        Returns:
+            rock, paper or scissors.
+        '''
         computer_options = ['rock', 'paper', 'scissors']
         computer_choice = random.choice(computer_options)
         return computer_choice
