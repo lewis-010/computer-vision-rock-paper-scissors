@@ -23,60 +23,107 @@ Rock, paper, scissors is a classic game played by two or more people and relies 
 - *manual_rps.py* file created within the above virtual environment to play the game without the need for a computer vision system model or camera. 
 - Users can simply run the script, input their choice of rock, paper or scissors into the terminal and find out if they have won, lost or drawn.
 - The option to play again without re-running the the script is also provided after the result of the game has been outputted.
-```python
-import random
-
-def get_computer_choice():
-    '''Returns computer's random choice of rock, paper or scissors from the options list.'''
-    options = ['rock', 'paper', 'scissors']
-    computer_choice = random.choice(options)
-    # print(computer_choice)
-    return computer_choice
-
-def get_user_choice():
-    '''Returns user's choice of rock, paper or scissors based on user input.
-        
-        Validiity of user input is also checked.
-    '''
-    while True:
-        choices = ['rock', 'paper', 'scissors']
-        user_choice = input('Enter your choice: ').lower()
-        if user_choice in choices:
-            break
-        else:
-            print("That is not a valid input. Please choose from rock, paper or scissors.")
-    return user_choice
-
-def get_winner(computer_choice, user_choice):
-    '''Determines the winner of the ganme (computer or user)
-        
-        Parameters:
-            computer_choice (str): computer's choice of rock, paper or scissors.
-            user_choice (str): user's choice of rock, paper or scissors.
-    '''
-    if (computer_choice=="rock" and user_choice=="scissors") or (computer_choice=="paper" and user_choice=="rock") or (computer_choice=="scissors" and user_choice=="paper"):
-        print("Computer wins!")
-    elif (computer_choice=="rock" and user_choice=="paper") or (computer_choice=="paper" and user_choice=="scissors") or (computer_choice=="scissors" and user_choice=="rock"):
-        print("You win!")
-    else:
-        print("Draw!")
-
-def play():
-    '''Calls the three previous functinons to run the game.
-    
-        Option to play the game again provided, based on user input.
-    '''
-    computer_choice = get_computer_choice()
-    user_choice = get_user_choice()
-    get_winner(computer_choice, user_choice)
-    while True:
-        play_again = input("Would you like to play again? (y/n): ")
-        if play_again.lower() == "y":
-            play()
-        else:
-            print("Game over.")
-        break             
-    
-play()
-```
+<br/><br/>
 ## Milestone 4
+- *camera_rps.py* file integrates the computer vision model, created in milestone 1, that can recognise a players choice or rock, paper or scissors through the webcam, with a python script similar to that in milestone 3.
+- The main differences are as follows:
+    - class created to ensure better readability
+    - get_user_choice function replaced with the model_check.py code that combines the computer vision model with the python script
+    - score tracking code added to get_winner function (limit of 3 wins for user or computer before script ends)
+    - countdown function added in the same format of a classic rock, paper, scissors game (ROCK, PAPER, SCISSORS, SHOOT, *get_user_choice runs*)
+    - text added to camera display that describes the user's choice
+- note - doc strings added in *camera_rps.py* file.
+```Python
+import cv2
+import random
+from keras.models import load_model
+import numpy as np
+import time
+
+model = load_model('keras_model.h5')
+cap = cv2.VideoCapture(0)
+data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+
+class Rps:
+    def __init__(self):
+        self.computer_wins = 0
+        self.user_wins = 0
+        self.options = ['rock', 'paper', 'scissors', 'nothing']
+   
+    def get_computer_choice(self):
+        computer_options = ['rock', 'paper', 'scissors']
+        computer_choice = random.choice(computer_options)
+        # print(computer_choice)
+        return computer_choice
+
+    def get_user_choice(self):
+        t_end = time.time()+1
+        while t_end > time.time(): 
+            ret, frame = cap.read()
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
+            image_np = np.array(resized_frame)
+            normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
+            data[0] = normalized_image
+            prediction = model.predict(data)
+            user_choice = np.argmax(prediction)
+
+            # add user guess as text to camera feed in
+            cv2.putText(frame, f"User Choice {self.options[user_choice]} ", (50, 50), font, 1, (0, 255, 255), 2, cv2.LINE_4)
+            cv2.imshow('frame', frame)
+            # Press q to close the window
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        return self.options[user_choice].lower()
+
+    def get_winner(self):
+        computer_choice = self.get_computer_choice()
+        user_choice = self.get_user_choice()
+        print("Computer choice:", computer_choice)
+        print("User choice:", user_choice)
+
+        if (computer_choice=="rock" and user_choice=="scissors") or (computer_choice=="paper" and user_choice=="rock") or (computer_choice=="scissors" and user_choice=="paper"):
+            print("Computer wins!")
+            self.computer_wins+=1
+        elif (computer_choice=="rock" and user_choice=="paper") or (computer_choice=="paper" and user_choice=="scissors") or (computer_choice=="scissors" and user_choice=="rock"):
+            print("You win!")
+            self.user_wins+=1
+        else:
+            print("Draw!")           
+
+    def countdown(self):
+            print("The game will start soon, make your choice now!")
+            time.sleep(3)
+            print("ROCK")
+            time.sleep(1)
+            print("PAPER")
+            time.sleep(1)
+            print("SCISSORS")
+            time.sleep(1)
+            print("SHOOT")
+            time.sleep(1)
+
+def play_game():
+    print("Let's play rock, paper, scissors. First to three wins!")
+    time.sleep(2)
+    play = Rps()
+    while play.user_wins < 3 or play.computer_wins < 3:
+        play.countdown()
+        play.get_winner()
+        print(f"Computer wins: {play.computer_wins}")
+        print(f"User wins: {play.user_wins}")
+
+        if play.user_wins == 3:
+            print("Nice! You have won 3 games.")
+            break
+        elif play.computer_wins == 3:
+            print("Unlucky! The computer has won 3 games.")
+            break
+
+    # After the loop release the cap object
+    cap.release()
+    # Destroy all the windows
+    cv2.destroyAllWindows()
+
+play_game()
+```
