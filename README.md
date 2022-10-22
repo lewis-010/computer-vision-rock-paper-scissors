@@ -1,5 +1,5 @@
 # The Computer Vision Project
-Rock, paper, scissors is a classic game played by two or more people and relies on the visual input of, usually, a player's hand. This project focuses on the creation of a computer vision system, or model, to detect whether the user is showing rock, paper, scissors or nothing to the camera, and to then use a python script to run the game.
+Rock, paper, scissors is a classic game played by two or more people and relies on the visual input of, usually, a player's hand. This project focuses on providing a way for users to play a game against the computer using physical gestures. In order to do this, a computer vision model, that can recognise the various hand gestures, is combined with a python script that runs the game and keeps track of the scores. 
 <br/><br/>
 
 ## Milestone 1
