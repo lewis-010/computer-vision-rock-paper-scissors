@@ -25,16 +25,16 @@ Rock, paper, scissors is a classic game played by two or more people and relies 
 <br/><br>
 
 ## Milestone 3
-- *manual_rps.py* file created within the above virtual environment to play the game without the need for a computer vision system model or camera. 
+- The *manual_rps.py* file was created within the above virtual environment to play the game without the need for a computer vision system model or camera. 
 - Users can simply run the script, input their choice of rock, paper or scissors into the terminal and find out if they have won, lost or drawn.
 - The option to play again without re-running the the script is also provided after the result of the game has been outputted.
 <br/><br>
 
 ## Milestone 4
-- *camera_rps.py* file integrates the computer vision model, created in milestone 1, that can recognise a players choice or rock, paper or scissors through the webcam, with a python script similar to that in milestone 3.
+- *camera_rps.py* file integrates the computer vision model, created in milestone 1, with a python script similar to that in milestone 3.
 - The main differences are as follows:
     - class created to ensure better readability
-    - get_user_choice function replaced with the model_check.py code that combines the computer vision model with the python script
+    - get_user_choice function replaced with the model_check.py code that implements the computer vision model.
     - score tracking code added to get_winner function (limit of 3 wins for user or computer before script ends)
     - countdown function added in the same format of a classic rock, paper, scissors game (ROCK, PAPER, SCISSORS, SHOOT, *get_user_choice runs*)
     - text added to camera display that describes the user's choice
