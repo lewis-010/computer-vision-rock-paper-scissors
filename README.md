@@ -1,11 +1,11 @@
 # The Computer Vision Project
-Rock, paper, scissors is a classic game played by two or more people and relies on the visual input of, usually, a player's hand. This project focuses on providing a way for users to play a game against the computer using physical gestures. In order to do this, a computer vision model, that can recognise the various hand gestures, is combined with a python script that runs the game and keeps track of the scores. 
+Rock, paper, scissors is a classic game played by two or more people and relies on the visual input of, usually, a player's hand. This project focused on providing a way for users to play a game against the computer using physical gestures. In order to do this, a computer vision model, that can recognise the various hand gestures, was combined with a python script that runs the game and keeps track of the scores. 
 <br/><br/>
 
 ## Milestone 1
-- The first task was to create a machine learning model using the online service [Teachable Machine](https://teachablemachine.withgoogle.com/).
-- Teaching Machine took visual samples of a player holding up rock, paper, scissors and nothing to create the respective four classes in the model.
-- A sample size of 200 images for each class was used.
+- The first task was to create a machine learning model that recognises a user's choice of rock, paper or scissors, using the online service [Teachable Machine](https://teachablemachine.withgoogle.com/). 
+- Teaching Machine took visual samples of a player holding up rock, paper, scissors and nothing to create the respective four classes in the model which was then exported (*keras_model.h5*).
+- A sample size of 200 images for each class was used., although increasing this value would improve the accuracy of the model.
 <br/><br/>
 
 ## Milestone 2
